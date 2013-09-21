@@ -8,6 +8,10 @@ module Vernissage
       @path = path
     end
 
+    def related_to?(image)
+      false
+    end
+
   end
 
 end
