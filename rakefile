@@ -1,0 +1,21 @@
+require "rake/testtask"
+
+task :default => [ 'test:functional' ]
+
+task :irb do
+  exec("irb -r./lib/vernissage")
+end
+
+namespace :test do
+
+  Rake::TestTask.new('functional') do |test|
+    test.libs << "test"
+    test.libs << "lib"
+    test.test_files = Dir[ "test/test_*.rb" ]
+    test.verbose = false
+  end
+
+  task :all => [ :fixtures, :functional ] do
+  end
+
+end
