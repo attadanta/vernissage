@@ -5,6 +5,16 @@ module Vernissage
 
   class Image
 
+    class << self
+
+      IMAGE_EXTENSIONS = %w{ .gif .jpg .jpeg .png }
+
+      def is_image?(path)
+        IMAGE_EXTENSIONS.include? Pathname.new(path).extname
+      end
+
+    end
+
     attr_reader :path
 
     def initialize(path)
@@ -28,6 +38,14 @@ module Vernissage
         image.name_contained_in_fragments? self.name_fragments
       else
         self.name_contained_in_fragments? image.name_fragments
+      end
+    end
+
+    def ==(other)
+      if other.respond_to? :path
+        @path == other.path
+      else
+        false
       end
     end
 
