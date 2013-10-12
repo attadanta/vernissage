@@ -10,16 +10,12 @@ class TestGallery < Test::Unit::TestCase
 
   include Vernissage
 
-  def test_creates_gallery_from_dirnames
-    FileUtils.mkdir('galleries')
-    expecteds = %w{ Drawings Paintings Sketches }
-    expecteds.each do |name|
-      FileUtils.mkdir(File.join('galleries', name))
-    end
-    actuals = Curator.new('galleries').galleries.collect do |gal|
-      gal.name
-    end.sort
-    assert_equal expecteds, actuals
+  def initialize(path)
+    @path = Pathname.new(path)
+  end
+
+  def galleries
+    @path.children.collect { |item| Gallery.new(item.basename.to_s) }
   end
 
 end
