@@ -10,12 +10,8 @@ class TestGallery < Test::Unit::TestCase
 
   include Vernissage
 
-  def initialize(path)
-    @path = Pathname.new(path)
-  end
-
-  def galleries
-    @path.children.collect { |item| Gallery.new(item.basename.to_s) }
+  def test_name_from_path
+    assert_equal "Sketches", Gallery.new(Pathname.new(File.join("galleries", "Sketches"))).name
   end
 
 end
