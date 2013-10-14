@@ -30,7 +30,7 @@ module Vernissage
     def properties
       @properties.map do |pair|
         "#{pair[0].to_s}=\"#{pair[1].to_s}\""
-      end.join
+      end.join(" ")
     end
 
     def contents
