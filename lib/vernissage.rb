@@ -8,4 +8,7 @@ require 'vernissage/gallery'
 
 # A simple web gallery processor. Made for http://plamenmadjarovart.com
 module Vernissage
+  def Vernissage::match_images(path_to_originals, path_to_thumbnails)
+    []
+  end
 end
