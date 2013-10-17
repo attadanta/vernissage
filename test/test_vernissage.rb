@@ -25,18 +25,30 @@ class TestVernissage < Test::Unit::TestCase
     FileUtils.touch(File.join(@small_paintings, "IMG_0463 copy.jpg"))
   end
 
-  def test_match_images
+  def test_matches_images
     actuals = Vernissage::match_images(Pathname.new(@orig_paintings),
                                        Pathname.new(@small_paintings))
     expecteds = [
-      [ Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.jpg"))),
+      [
+        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.jpg"))),
         Image.new(Pathname.new(File.join(@small_paintings, "IMG_0458 copy.jpg")))
       ],
-      [ Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0460.jpg"))),
+      [
+        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0460.jpg"))),
         Image.new(Pathname.new(File.join(@small_paintings, "IMG_0460 copy.jpg")))
       ],
-      [ Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0461.jpg"))),
-        Image.new(Pathname.new(File.join(@small_paintings, "IMG_0461 copy.jpg"))) ]
+      [
+        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0461.jpg"))),
+        Image.new(Pathname.new(File.join(@small_paintings, "IMG_0461 copy.jpg")))
+      ],
+      [
+        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0462.jpg"))),
+        nil
+      ],
+      [
+        nil,
+        Image.new(Pathname.new(File.join(@small_paintings, "IMG_0463 copy.jpg")))
+      ]
     ]
     assert_equal expecteds, actuals
   end

@@ -27,7 +27,7 @@ module Vernissage
 
     def ==(other)
       if other.respond_to? :path
-        self.path == other.path
+        self.path.basename == other.path.basename
       else
         false
       end
