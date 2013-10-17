@@ -8,6 +8,7 @@ require 'vernissage/gallery'
 
 # A simple web gallery processor. Made for http://plamenmadjarovart.com
 module Vernissage
+
   def Vernissage::match_images(path_to_originals, path_to_thumbnails)
     pairs = []
     originals = path_to_originals.children
@@ -26,4 +27,13 @@ module Vernissage
     thumbnails.each { |thumb| pairs.push [ nil, Image.new(thumb) ] }
     pairs
   end
+
+  def Vernissage::find_unmatched_originals(pairs)
+    pairs.select { |pair| pair[1].nil? }.map { |pair| pair[0] }
+  end
+
+  def Vernissage::find_unmatched_thumbnails(pairs)
+    pairs.select { |pair| pair[0].nil? }.map { |pair| pair[1] }
+  end
+
 end

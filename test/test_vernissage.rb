@@ -26,8 +26,6 @@ class TestVernissage < Test::Unit::TestCase
   end
 
   def test_matches_images
-    actuals = Vernissage::match_images(Pathname.new(@orig_paintings),
-                                       Pathname.new(@small_paintings))
     expecteds = [
       [
         Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.jpg"))),
@@ -50,7 +48,31 @@ class TestVernissage < Test::Unit::TestCase
         Image.new(Pathname.new(File.join(@small_paintings, "IMG_0463 copy.jpg")))
       ]
     ]
+
+    actuals = Vernissage::match_images(Pathname.new(@orig_paintings),
+                                       Pathname.new(@small_paintings))
     assert_equal expecteds, actuals
   end
 
+  def test_finds_l_unmatched
+    expecteds = [ Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0462.jpg"))) ]
+    actuals = Vernissage::find_unmatched_originals(
+      Vernissage::match_images(
+        Pathname.new(@orig_paintings),
+        Pathname.new(@small_paintings)
+      )
+    )
+    assert_equal expecteds, actuals
+  end
+
+  def test_finds_r_unmatched
+    expecteds = [ Image.new(Pathname.new(File.join(@small_paintings, "IMG_0463 copy.jpg"))) ]
+    actuals = Vernissage::find_unmatched_thumbnails(
+      Vernissage::match_images(
+        Pathname.new(@orig_paintings),
+        Pathname.new(@small_paintings)
+      )
+    )
+    assert_equal expecteds, actuals
+  end
 end
