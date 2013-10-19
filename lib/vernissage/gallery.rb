@@ -5,6 +5,8 @@ module Vernissage
 
   class Gallery
 
+    include Curator
+
     attr_reader :path
     attr_reader :name
 

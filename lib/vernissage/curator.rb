@@ -36,7 +36,9 @@ module Vernissage
     protected
 
     def name_contained_in_fragments?(fragments)
-      fragments.include? self.basename
+      fragments.map do |f|
+        f.downcase
+      end.include? self.basename.downcase
     end
 
   end
