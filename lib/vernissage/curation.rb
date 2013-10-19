@@ -6,8 +6,8 @@ module Vernissage
   class Curation
 
     def initialize(path_to_originals, path_to_thumbnails)
-      @originals = path_to_originals.children
-      @thumbnails = path_to_thumbnails.children
+      @path_to_originals = path_to_originals
+      @path_to_thumbnails = path_to_thumbnails
       @pairs = match_images
     end
 
@@ -23,6 +23,14 @@ module Vernissage
       @pairs.to_ary
     end
 
+    def to_gallery
+      gallery = Gallery.new(@path_to_originals)
+      exhibits.each do |exhibit|
+        gallery.add_exhibit exhibit
+      end
+      gallery
+    end
+
     def exhibits
       find_matches.reject do |pair|
         pair[0].nil? or pair[1].nil?
@@ -35,8 +43,8 @@ module Vernissage
 
     def match_images
       pairs = []
-      originals = @originals.map { |entry| Image.new(entry) }
-      thumbnails = @thumbnails.map { |entry| Image.new(entry) }
+      originals = @path_to_originals.children.map { |entry| Image.new(entry) }
+      thumbnails = @path_to_thumbnails.children.map { |entry| Image.new(entry) }
       until originals.empty? do
         left_candidate = originals.shift
         match = thumbnails.index do |thumb|

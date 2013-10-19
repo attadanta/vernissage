@@ -1,5 +1,8 @@
 $:.unshift File.dirname(__FILE__)
 
+require 'pathname'
+require 'stringio'
+
 require 'vernissage/frame'
 require 'vernissage/curator'
 require 'vernissage/image'
