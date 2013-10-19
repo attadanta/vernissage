@@ -22,8 +22,8 @@ class TestExhibit < Test::Unit::TestCase
     assert_equal(
       %{<a rel="lightbox[sketches]" class="box" href="IMG_1234.png"><img src="IMG_1234 small.png" /></a>},
       Exhibit.new(Image.new(Pathname.new("IMG_1234.png")),
-                  Image.new(Pathname.new("IMG_1234 small.png")),
-                    rel: "lightbox[sketches]", class: "box").render
+                  Image.new(Pathname.new("IMG_1234 small.png"))
+                 ).render(rel: "lightbox[sketches]", class: "box")
     )
   end
 
