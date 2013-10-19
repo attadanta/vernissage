@@ -72,4 +72,27 @@ class TestVernissage < Test::Unit::TestCase
 
     assert_equal expecteds, actuals
   end
+
+  def test_generates_exhibits_list
+    expecteds = [
+      Exhibit.new(
+        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.jpg"))),
+        Image.new(Pathname.new(File.join(@small_paintings, "IMG_0458 copy.jpg")))
+      ),
+      Exhibit.new(
+        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0460.jpg"))),
+        Image.new(Pathname.new(File.join(@small_paintings, "IMG_0460 copy.jpg")))
+      ),
+      Exhibit.new(
+        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0461.jpg"))),
+        Image.new(Pathname.new(File.join(@small_paintings, "IMG_0461 copy.jpg")))
+      )
+    ]
+
+    actuals = Curation.new(Pathname.new(@orig_paintings),
+                           Pathname.new(@small_paintings)).exhibits
+
+    assert_equal expecteds, actuals
+  end
+
 end

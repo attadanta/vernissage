@@ -25,9 +25,9 @@ module Vernissage
 
     def exhibits
       find_matches.reject do |pair|
-        match[0].nil? or match[1].nil?
+        pair[0].nil? or pair[1].nil?
       end.map do |pair|
-        Exhibit.new(match[0], match[1])
+        Exhibit.new(pair[0], pair[1])
       end
     end
 

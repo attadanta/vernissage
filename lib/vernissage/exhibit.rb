@@ -18,6 +18,11 @@ module Vernissage
                ).render
     end
 
+    def ==(other)
+      @original_image == other.original_image &&
+        @thumbnail == other.thumbnail
+    end
+
   end
 
 end
