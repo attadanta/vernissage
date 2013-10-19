@@ -23,24 +23,32 @@ module Vernissage
       @pairs.to_ary
     end
 
+    def exhibits
+      find_matches.reject do |pair|
+        match[0].nil? or match[1].nil?
+      end.map do |pair|
+        Exhibit.new(match[0], match[1])
+      end
+    end
+
     private
 
     def match_images
       pairs = []
-      originals = @originals.to_ary
-      thumbnails = @thumbnails.to_ary
+      originals = @originals.map { |entry| Image.new(entry) }
+      thumbnails = @thumbnails.map { |entry| Image.new(entry) }
       until originals.empty? do
-        left_candidate = Image.new(originals.shift)
+        left_candidate = originals.shift
         match = thumbnails.index do |thumb|
-          left_candidate.related_to? Image.new(thumb)
+          left_candidate.related_to? thumb
         end
         unless match.nil?
-          pairs.push [ left_candidate, Image.new(thumbnails.slice!(match)) ]
+          pairs.push [ left_candidate, thumbnails.slice!(match) ]
         else
           pairs.push [ left_candidate, match ]
         end
       end
-      thumbnails.each { |thumb| pairs.push [ nil, Image.new(thumb) ] }
+      thumbnails.each { |thumb| pairs.push [ nil, thumb ] }
       pairs
     end
 
