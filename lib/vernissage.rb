@@ -11,7 +11,33 @@ require 'vernissage/gallery'
 require 'vernissage/curation'
 require 'vernissage/vita'
 
-# A simple web gallery processor. Made for http://plamenmadjarovart.com
+# A web gallery processor made for http://plamenmadjarovart.com.
 module Vernissage
+
+  class Vernissage
+
+    def initialize(discovery)
+      @discovery = discovery
+    end
+
+    def galleries
+    end
+
+    def exhibitions
+    end
+
+    def languages
+    end
+
+    def contact
+    end
+
+    def report
+    end
+
+    def render
+    end
+
+  end
 
 end
