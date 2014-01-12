@@ -3,7 +3,6 @@
 require 'vernissage'
 require 'fileutils'
 require 'pathname'
-require 'fakefs'
 require 'test/unit'
 
 class TestFrame < Test::Unit::TestCase

@@ -4,15 +4,18 @@ require 'test/unit'
 require 'vernissage'
 require 'fileutils'
 require 'pathname'
-require 'fakefs'
+require 'fakefs/safe'
 
 class TestVernissage < Test::Unit::TestCase
 
   include Vernissage
 
   def setup
+    FakeFS.activate!
+
     @orig_paintings = File.join("images", "paintings")
     @small_paintings = File.join("images", "small paintings")
+
     FileUtils.mkdir_p(@orig_paintings)
     FileUtils.mkdir_p(@small_paintings)
     FileUtils.touch(File.join(@orig_paintings, "IMG_0458.jpg"))
@@ -23,6 +26,10 @@ class TestVernissage < Test::Unit::TestCase
     FileUtils.touch(File.join(@small_paintings, "IMG_0460 copy.jpg"))
     FileUtils.touch(File.join(@small_paintings, "IMG_0461 copy.jpg"))
     FileUtils.touch(File.join(@small_paintings, "IMG_0463 copy.jpg"))
+  end
+
+  def teardown
+    FakeFS.deactivate!
   end
 
   def test_matches_images

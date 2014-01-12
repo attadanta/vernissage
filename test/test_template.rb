@@ -3,7 +3,6 @@
 require 'vernissage'
 require 'fileutils'
 require 'pathname'
-require 'fakefs'
 require 'test/unit'
 
 class TestTemplate < Test::Unit::TestCase

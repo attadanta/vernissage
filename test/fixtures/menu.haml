@@ -1,6 +1,6 @@
 %header#menu
   %h1 Plamen Madjarov
   %ul
-  - @galleries.each do |gallery|
-    %li
-      %a{ :href => "#" + gallery.name.downcase }= gallery.name
+    - @galleries.each do |gallery|
+      %li
+        %a{ :href => "#" + gallery.name.downcase }= gallery.name
