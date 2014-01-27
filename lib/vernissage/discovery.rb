@@ -43,7 +43,7 @@ module Vernissage
     end
 
     def to_s
-      "Discovery{ originals=" + @path_to_originals + " thumbs=" + @path_to_thumbnails
+      "Vernissage::Discovery{ originals=" + @path_to_originals.to_s + " thumbs=" + @path_to_thumbnails.to_s + " }"
     end
 
     private
