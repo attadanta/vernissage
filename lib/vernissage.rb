@@ -4,6 +4,7 @@ require 'pathname'
 require 'stringio'
 
 require 'vernissage/frame'
+require 'vernissage/discovery'
 require 'vernissage/curator'
 require 'vernissage/image'
 require 'vernissage/exhibit'
@@ -16,11 +17,12 @@ module Vernissage
 
   class Vernissage
 
-    def initialize(discovery)
-      @discovery = discovery
+    def initialize(discovery, bio)
+      @curations = discovery.curations
     end
 
     def galleries
+      @curations.map { |curation| curation.to_gallery }
     end
 
     def exhibitions

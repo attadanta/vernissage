@@ -32,6 +32,21 @@ class TestVernissage < Test::Unit::TestCase
     FakeFS.deactivate!
   end
 
+  def test_find_positive_match
+    potentials = [
+      Image.new(Pathname.new(File.join(@small_paintings, "IMG_0458 copy.jpg"))),
+      Image.new(Pathname.new(File.join(@small_paintings, "IMG_0460 copy.jpg"))),
+      Image.new(Pathname.new(File.join(@small_paintings, "IMG_0461 copy.jpg")))
+    ]
+
+    test_case = Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.jpg")))
+
+    assert_equal(
+      Image.new(Pathname.new(File.join(@small_paintings, "IMG_0458 copy.jpg"))),
+      test_case.find_match(potentials)
+    )
+  end
+
   def test_matches_images
     expecteds = [
       [

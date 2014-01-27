@@ -53,7 +53,7 @@ class TestVita < Test::Unit::TestCase
     assert_equal expected, Vita.new.parse(contents)
   end
 
-  def test_parse_ignores_gaps
+  def test_parses_ignores_gaps
     contents = <<-END
     Expertise:
 

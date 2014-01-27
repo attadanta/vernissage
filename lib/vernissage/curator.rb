@@ -17,6 +17,10 @@ module Vernissage
       name_fragments.size > 1
     end
 
+    def find_match(objects)
+      objects.find { |object| object.related_to? self }
+    end
+
     def related_to?(image)
       if self.name_has_multiple_fragments?
         image.name_contained_in_fragments? self.name_fragments
