@@ -2,10 +2,14 @@
 
 module Vernissage
 
+  # Assembles the site.
   class Finissage
 
+    # Class constructor.
+    #
     # discovery: a Discovery instance
     # bio: a Pathname instance
+    # contact: a Pathname instance
     # template: a Pathname instance
     def initialize(discovery, bio, contact, template)
       @curations = discovery.curations
@@ -19,15 +23,15 @@ module Vernissage
     end
 
     def exhibitions
-      @bio['Exhibitions']
+      @bio.fetch('Exhibitions')
     end
 
     def languages
-      @bio['Languages']
+      @bio.fetch('Languages')
     end
 
     def education
-      @bio['Education']
+      @bio.fetch('Education')
     end
 
     def contact
@@ -38,6 +42,7 @@ module Vernissage
     end
 
     def render
+      Haml::Engine.new(@template).render(self)
     end
 
   end

@@ -9,6 +9,7 @@ module Vernissage
 
     attr_reader :path
     attr_reader :name
+    attr_reader :exhibits
 
     def initialize(path)
       @path = path

@@ -5,6 +5,7 @@ require 'fakefs/safe'
 
 require 'fileutils'
 require 'pathname'
+
 require 'vernissage'
 
 class TestVernissage < Test::Unit::TestCase
@@ -19,10 +20,12 @@ class TestVernissage < Test::Unit::TestCase
 
     FileUtils.mkdir_p(@orig_paintings)
     FileUtils.mkdir_p(@small_paintings)
+
     FileUtils.touch(File.join(@orig_paintings, "IMG_0458.jpg"))
     FileUtils.touch(File.join(@orig_paintings, "IMG_0460.jpg"))
     FileUtils.touch(File.join(@orig_paintings, "IMG_0461.jpg"))
     FileUtils.touch(File.join(@orig_paintings, "IMG_0462.jpg"))
+
     FileUtils.touch(File.join(@small_paintings, "IMG_0458 copy.jpg"))
     FileUtils.touch(File.join(@small_paintings, "IMG_0460 copy.jpg"))
     FileUtils.touch(File.join(@small_paintings, "IMG_0461 copy.jpg"))

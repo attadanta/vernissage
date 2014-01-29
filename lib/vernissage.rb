@@ -2,6 +2,7 @@ $:.unshift File.dirname(__FILE__)
 
 require 'pathname'
 require 'stringio'
+require 'haml'
 
 require 'vernissage/frame'
 require 'vernissage/discovery'

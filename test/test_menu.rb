@@ -9,7 +9,7 @@ class TestMenu < Test::Unit::TestCase
   include Vernissage
 
   def setup
-    @fixtures = File.join(Pathname.new(__FILE__).dirname, 'fixtures')
+    @fixtures_dir = File.join(Pathname.new(__FILE__).dirname, 'fixtures')
 
     @galleries = [
       Gallery.new(Pathname.new('drawings')),
@@ -18,8 +18,8 @@ class TestMenu < Test::Unit::TestCase
   end
 
   def test_fixture
-    template = File.read(File.join(@fixtures, 'menu.haml'))
-    expected = File.read(File.join(@fixtures, 'menu.html'))
+    template = File.read(File.join(@fixtures_dir, 'menu.haml'))
+    expected = File.read(File.join(@fixtures_dir, 'menu.html'))
 
     engine = Haml::Engine.new(template)
 

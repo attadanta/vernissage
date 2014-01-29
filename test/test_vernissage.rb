@@ -30,10 +30,10 @@ class TestFinissage < Test::Unit::TestCase
 
     discovery = Discovery.new(Pathname.new('originals'), Pathname.new('thumbs'))
 
-    bio = Pathname.new(@fixtures.join(Pathname.new('bio.mdwn')))
-    contact = Pathname.new(@fixtures.join(Pathname.new('contact.mdwn')))
+    bio = @fixtures.join(Pathname.new('bio.mdwn'))
+    contact = @fixtures.join(Pathname.new('contact.mdwn'))
 
-    template = Pathname.new(@fixtures.join(Pathname.new('template.haml')))
+    template = @fixtures.join(Pathname.new('template.haml'))
 
     @vernissage = Finissage.new(discovery, bio, contact, template)
   end
@@ -51,7 +51,8 @@ class TestFinissage < Test::Unit::TestCase
     assert_equal(actual, @vernissage.education)
   end
 
-  def test_contact
+  def test_render
+    puts @vernissage.render
   end
 
 end
