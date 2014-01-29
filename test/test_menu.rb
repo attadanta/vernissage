@@ -10,6 +10,7 @@ class TestMenu < Test::Unit::TestCase
 
   def setup
     @fixtures = File.join(Pathname.new(__FILE__).dirname, 'fixtures')
+
     @galleries = [
       Gallery.new(Pathname.new('drawings')),
       Gallery.new(Pathname.new('sketches'))

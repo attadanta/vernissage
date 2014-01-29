@@ -1,0 +1,83 @@
+!!! 5
+<!--[if lt IE 7]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7]> <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+%html.no-js{ :lang => "en" }
+<!--<![endif]-->
+  %head
+    %meta{ :charset => "utf-8" }/
+    %meta{ "http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1" }/
+
+    %title Plamen Madjarov
+    %meta{ :name => "description", :content => "Personal Portfolio" }/
+    %meta{ :name => "", :content => "" }/
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }/
+
+    %link{ :rel = "icon", :type => "image/png", :href => "favicon.ico"}/
+
+    %link{ :rel => "stylesheet", :href => "css/normalize.css" }/
+    %link{ :rel => "stylesheet", :href => "css/main.css", :media => "all" }/
+    %link{ :href => "http://fonts.googleapis.com/css?family=Roboto:100|Cinzel", :rel => "stylesheet", :type => "text/css" }/
+    %link{ :href => "css/lightbox.css", :rel => "stylesheet" }/
+
+    %script{ :src => "js/vendor/jquery-1.7.2.min.js" }
+    %script{ :src => "js/lightbox.js" }
+    %script{ :src => "js/vendor/modernizr-2.6.2.min.js" }
+
+  %body
+
+    -# Menu
+    %header#menu
+      %h1 Plamen Madjarov
+      %ul
+      - @galleries.each do |gallery|
+        %li
+          %a{ :href => "#" + gallery.name.downcase }= gallery.name
+
+    -# Galleries
+    - @galleries.each do |gallery|
+      %section#gallery.name
+        %div.gallery
+          %h1= gallery.name
+          - gallery.exhibits.each do |exhibit|
+            %div.gallery-item.shadow
+              %img{ :src => exhibit.thumbnail.path }/
+
+    %section#bio
+      %div.wrap
+        %div#vita
+
+          %h1 Bio
+
+          -# Education
+          %h2 Education
+          %ul
+          - @education.each do |entry|
+            %li= entry
+
+          -# Exhibitions
+          %h2 Exhibitions
+          %ul
+          - @exhibitions.each do |exhibition|
+            %li= exhibition
+
+          -# Languages
+          %h2 Languages
+          %ul
+          - @languages.each do |language|
+            %li= language
+
+        -# Contact
+        %div#contact
+          %h1 Contact
+          %dl
+          - @contact.each_pair do |k, v|
+            %dt= k
+            %dd= v
+
+    %footer
+      &copy; 2013 Plamen Madjarov. Site by <a href="http://mischung.net" title="mischung">mischung</a>.
+
+    %script{ :src => "js/plugins.js" }
+    %script{ :src => "js/main.js" }

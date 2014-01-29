@@ -11,35 +11,8 @@ require 'vernissage/exhibit'
 require 'vernissage/gallery'
 require 'vernissage/curation'
 require 'vernissage/vita'
+require 'vernissage/vernissage'
 
 # A web gallery processor made for http://plamenmadjarovart.com.
 module Vernissage
-
-  class Vernissage
-
-    def initialize(discovery, bio)
-      @curations = discovery.curations
-    end
-
-    def galleries
-      @curations.map { |curation| curation.to_gallery }
-    end
-
-    def exhibitions
-    end
-
-    def languages
-    end
-
-    def contact
-    end
-
-    def report
-    end
-
-    def render
-    end
-
-  end
-
 end

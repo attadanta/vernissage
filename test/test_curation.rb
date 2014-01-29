@@ -1,10 +1,11 @@
 # coding: utf-8
 
 require 'test/unit'
-require 'vernissage'
+require 'fakefs/safe'
+
 require 'fileutils'
 require 'pathname'
-require 'fakefs/safe'
+require 'vernissage'
 
 class TestVernissage < Test::Unit::TestCase
 
