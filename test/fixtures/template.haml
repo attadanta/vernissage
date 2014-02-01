@@ -7,16 +7,15 @@
 %html.no-js{ :lang => "en" }
 
   %head
+    %title Plamen Madjarov
+
     %meta{ :charset => "utf-8" }/
     %meta{ "http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1" }/
-
-    %title Plamen Madjarov
     %meta{ :name => "description", :content => "Personal Portfolio" }/
     %meta{ :name => "", :content => "" }/
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }/
 
     %link{ :rel => "icon", :type => "image/png", :href => "favicon.ico"}/
-
     %link{ :rel => "stylesheet", :href => "css/normalize.css" }/
     %link{ :rel => "stylesheet", :href => "css/main.css", :media => "all" }/
     %link{ :href => "http://fonts.googleapis.com/css?family=Roboto:100|Cinzel", :rel => "stylesheet", :type => "text/css" }/
@@ -32,18 +31,21 @@
     %header#menu
       %h1 Plamen Madjarov
       %ul
-      - galleries.each do |gallery|
-        %li
-          %a{ :href => "#" + gallery.name.downcase }= gallery.name
+        - galleries.each do |gallery|
+          %li
+            %a{ :href => "#" + gallery.name.downcase,
+                :title => "Jump to " + gallery.name }= gallery.name
 
     -# Galleries
     - galleries.each do |gallery|
-      %section#gallery.name
+      %section{ :id => gallery.name.downcase }
         %div.gallery
           %h1= gallery.name
           - gallery.exhibits.each do |exhibit|
             %div.gallery-item.shadow
-              %img{ :src => exhibit.thumbnail.path }/
+              %a.box{ :href => exhibit.original_image.path,
+                      :rel => "lightbox[" + gallery.name.downcase + "]"}
+                %img{ :src => exhibit.thumbnail.path }/
 
     %section#bio
       %div.wrap
@@ -75,7 +77,8 @@
           %dl
             - contact.each_pair do |k, v|
               %dt= k
-              %dd= v
+              - v.each do |item|
+                %dd= item
 
     %footer
       &copy; 2013 Plamen Madjarov. Site by <a href="http://mischung.net" title="mischung">mischung</a>.

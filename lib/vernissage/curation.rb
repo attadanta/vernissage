@@ -39,24 +39,35 @@ module Vernissage
       end
     end
 
+    def thumbnails
+      @path_to_thumbnails.children.map { |entry| Image.new(entry) }
+    end
+
+    def original_images
+      @path_to_originals.children.map { |entry| Image.new(entry) }
+    end
+
     private
 
     def match_images
       pairs = []
-      originals = @path_to_originals.children.map { |entry| Image.new(entry) }
-      thumbnails = @path_to_thumbnails.children.map { |entry| Image.new(entry) }
+
+      originals = original_images
+      thumbs = thumbnails
+
       until originals.empty? do
         left_candidate = originals.shift
-        match = thumbnails.index do |thumb|
+        match = thumbs.index do |thumb|
           left_candidate.related_to? thumb
         end
         unless match.nil?
-          pairs.push [ left_candidate, thumbnails.slice!(match) ]
+          pairs.push [ left_candidate, thumbs.slice!(match) ]
         else
           pairs.push [ left_candidate, match ]
         end
       end
-      thumbnails.each { |thumb| pairs.push [ nil, thumb ] }
+      thumbs.each { |thumb| pairs.push [ nil, thumb ] }
+
       pairs
     end
 

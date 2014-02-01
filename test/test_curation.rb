@@ -36,7 +36,7 @@ class TestVernissage < Test::Unit::TestCase
     FakeFS.deactivate!
   end
 
-  def test_find_positive_match
+  def test_finds_positive_match
     potentials = [
       Image.new(Pathname.new(File.join(@small_paintings, "IMG_0458 copy.jpg"))),
       Image.new(Pathname.new(File.join(@small_paintings, "IMG_0460 copy.jpg"))),
@@ -121,4 +121,30 @@ class TestVernissage < Test::Unit::TestCase
     assert_equal expecteds, actuals
   end
 
+  def test_enumerates_original_images
+    instance = Curation.new(Pathname.new(@orig_paintings),
+                            Pathname.new(@small_paintings))
+
+    expecteds = [
+      Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.jpg"))),
+      Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0460.jpg"))),
+      Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0461.jpg"))),
+      Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0462.jpg")))
+    ]
+
+    assert_equal expecteds, instance.original_images
+  end
+
+  def test_enumerates_thumbs
+    instance = Curation.new(Pathname.new(@orig_paintings),
+                            Pathname.new(@small_paintings))
+    expecteds = [
+      Image.new(Pathname.new(File.join(@small_paintings, "IMG_0458 copy.jpg"))),
+      Image.new(Pathname.new(File.join(@small_paintings, "IMG_0460 copy.jpg"))),
+      Image.new(Pathname.new(File.join(@small_paintings, "IMG_0461 copy.jpg"))),
+      Image.new(Pathname.new(File.join(@small_paintings, "IMG_0463 copy.jpg")))
+    ]
+
+    assert_equal expecteds, instance.thumbnails
+  end
 end
