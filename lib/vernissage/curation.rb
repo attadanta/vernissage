@@ -39,6 +39,22 @@ module Vernissage
       end
     end
 
+    def unmatched_original_images
+      find_matches.select do |pair|
+        pair[0] != nil and pair[1].nil?
+      end.map do |pair|
+        pair[0]
+      end
+    end
+
+    def unmatched_thumbnails
+      find_matches.select do |pair|
+        pair[0].nil? and pair[1] != nil
+      end.map do |pair|
+        pair[1]
+      end
+    end
+
     def thumbnails
       @path_to_thumbnails.children.map { |entry| Image.new(entry) }
     end

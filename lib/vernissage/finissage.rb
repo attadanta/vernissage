@@ -39,6 +39,11 @@ module Vernissage
     end
 
     def report
+      io = StringIO.new
+      io << "<#{@name}"
+      io << " " + render_properties unless @properties.empty?
+      io << ">"
+      io.close; io.string
     end
 
     def render

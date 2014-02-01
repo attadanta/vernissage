@@ -147,4 +147,26 @@ class TestVernissage < Test::Unit::TestCase
 
     assert_equal expecteds, instance.thumbnails
   end
+
+  def test_enumerates_unmatched_originals
+    instance = Curation.new(Pathname.new(@orig_paintings),
+                            Pathname.new(@small_paintings))
+    expecteds = [
+      Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0462.jpg")))
+    ]
+
+    assert_equal expecteds, instance.unmatched_original_images
+  end
+
+  def test_enumerates_unmatched_thumbnails
+    instance = Curation.new(Pathname.new(@orig_paintings),
+                            Pathname.new(@small_paintings))
+
+    expecteds = [
+      Image.new(Pathname.new(File.join(@small_paintings, "IMG_0463 copy.jpg")))
+    ]
+
+    assert_equal expecteds, instance.unmatched_thumbnails
+  end
+
 end
