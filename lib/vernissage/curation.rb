@@ -12,11 +12,11 @@ module Vernissage
     end
 
     def find_unmatched_originals
-      @pairs.select { |pair| pair[1].nil? }.map { |pair| pair[0] }
+      find_matches.select { |pair| pair[1].nil? }.map { |pair| pair[0] }
     end
 
     def find_unmatched_thumbnails
-      @pairs.select { |pair| pair[0].nil? }.map { |pair| pair[1] }
+      find_matches.select { |pair| pair[0].nil? }.map { |pair| pair[1] }
     end
 
     def find_matches
@@ -36,22 +36,6 @@ module Vernissage
         pair[0].nil? or pair[1].nil?
       end.map do |pair|
         Exhibit.new(pair[0], pair[1])
-      end
-    end
-
-    def unmatched_original_images
-      find_matches.select do |pair|
-        pair[0] != nil and pair[1].nil?
-      end.map do |pair|
-        pair[0]
-      end
-    end
-
-    def unmatched_thumbnails
-      find_matches.select do |pair|
-        pair[0].nil? and pair[1] != nil
-      end.map do |pair|
-        pair[1]
       end
     end
 
