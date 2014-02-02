@@ -4,6 +4,7 @@ require 'vernissage'
 
 path_to_originals = Pathname.new ARGV[0]
 path_to_thumbnails = Pathname.new ARGV[1]
+
 bio = Pathname.new ARGV[2]
 contact = Pathname.new ARGV[3]
 template = Pathname.new ARGV[4]
