@@ -15,7 +15,7 @@ namespace :test do
     test.verbose = false
   end
 
-  task :all => [ :fixtures, :functional ] do
+  task :all => [ :functional ] do
   end
 
 end

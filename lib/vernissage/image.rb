@@ -12,7 +12,7 @@ module Vernissage
       IMAGE_EXTENSIONS = %w{ .gif .jpg .jpeg .png }
 
       def is_image?(path)
-        IMAGE_EXTENSIONS.include? Pathname.new(path).extname
+        IMAGE_EXTENSIONS.include? Pathname.new(path).extname.downcase
       end
 
     end

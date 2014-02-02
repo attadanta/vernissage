@@ -12,6 +12,7 @@ require 'vernissage/exhibit'
 require 'vernissage/gallery'
 require 'vernissage/curation'
 require 'vernissage/vita'
+require 'vernissage/report'
 require 'vernissage/finissage'
 
 # A web gallery processor made for http://plamenmadjarovart.com.
