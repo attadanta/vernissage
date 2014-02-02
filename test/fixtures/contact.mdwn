@@ -1,6 +1,6 @@
 email:
 
- - plamen.pmadjarov@gmail.com
+ - <a href="mailto:plamen.pmadjarov@gmail.com" title="Mail Plamen">plamen.pmadjarov@gmail.com</a>
 
 phone number:
 

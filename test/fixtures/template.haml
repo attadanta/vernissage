@@ -34,6 +34,8 @@
           %li
             %a{ :href => "#" + gallery.name.downcase,
                 :title => "Jump to " + gallery.name }= gallery.name
+        %li
+          %a{ :href => "#bio", :title => "Jump to Bio"} Bio &amp; Contact
 
     -# Galleries
     - galleries.each do |gallery|
