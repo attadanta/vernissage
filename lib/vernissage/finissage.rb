@@ -19,7 +19,7 @@ module Vernissage
     end
 
     def galleries
-      @curations.map { |curation| curation.to_gallery }.sort do |a,b|
+      @curations.map { |curation| curation.to_gallery }.sort do |a, b|
         a.name <=> b.name
       end
     end
@@ -43,7 +43,8 @@ module Vernissage
     def report
     end
 
-    def render
+    def render(webroot=Pathname.new('/'))
+      @webroot = webroot
       Haml::Engine.new(@template).render(self)
     end
 

@@ -44,9 +44,9 @@
           %h1= gallery.name
           - gallery.exhibits.each do |exhibit|
             %div.gallery-item.shadow
-              %a.box{ :href => exhibit.original_image.path,
+              %a.box{ :href => exhibit.original_image.path.relative_path_from(@webroot),
                       :rel => "lightbox[" + gallery.name.downcase + "]"}
-                %img{ :src => exhibit.thumbnail.path }/
+                %img{ :src => exhibit.thumbnail.path.relative_path_from(@webroot) }/
 
     %section#bio
       %div.wrap
