@@ -2,10 +2,15 @@
 
 module Vernissage
 
+  # An exhibit is a pair of images linking an original with its thumbnail.
   class Exhibit
 
     attr_reader :original_image, :thumbnail
 
+    # Class constructor
+    #
+    # @param [Pathname] the path to the original image.
+    # @param [Pathname] the path to the image thumbnail.
     def initialize(original_image, thumbnail)
       @original_image = original_image
       @thumbnail = thumbnail

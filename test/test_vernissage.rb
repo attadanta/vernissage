@@ -52,7 +52,7 @@ class TestFinissage < Test::Unit::TestCase
   end
 
   def test_render
-    puts @vernissage.render
+    puts @vernissage.render(Pathname.new(''))
   end
 
 end
