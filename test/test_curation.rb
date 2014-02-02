@@ -21,15 +21,17 @@ class TestVernissage < Test::Unit::TestCase
     FileUtils.mkdir_p(@orig_paintings)
     FileUtils.mkdir_p(@small_paintings)
 
-    FileUtils.touch(File.join(@orig_paintings, "IMG_0458.jpg"))
-    FileUtils.touch(File.join(@orig_paintings, "IMG_0460.jpg"))
+    FileUtils.touch(File.join(@orig_paintings, "IMG_0458.JPG"))
+    FileUtils.touch(File.join(@orig_paintings, "IMG_0460.JPG"))
     FileUtils.touch(File.join(@orig_paintings, "IMG_0461.jpg"))
     FileUtils.touch(File.join(@orig_paintings, "IMG_0462.jpg"))
+    FileUtils.touch(File.join(@orig_paintings, "list.txt"))
 
     FileUtils.touch(File.join(@small_paintings, "IMG_0458 copy.jpg"))
     FileUtils.touch(File.join(@small_paintings, "IMG_0460 copy.jpg"))
     FileUtils.touch(File.join(@small_paintings, "IMG_0461 copy.jpg"))
     FileUtils.touch(File.join(@small_paintings, "IMG_0463 copy.jpg"))
+    FileUtils.touch(File.join(@small_paintings, "misc.txt"))
   end
 
   def teardown
@@ -43,7 +45,7 @@ class TestVernissage < Test::Unit::TestCase
       Image.new(Pathname.new(File.join(@small_paintings, "IMG_0461 copy.jpg")))
     ]
 
-    test_case = Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.jpg")))
+    test_case = Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.JPG")))
 
     assert_equal(
       Image.new(Pathname.new(File.join(@small_paintings, "IMG_0458 copy.jpg"))),
@@ -54,11 +56,11 @@ class TestVernissage < Test::Unit::TestCase
   def test_matches_images
     expecteds = [
       [
-        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.jpg"))),
+        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.JPG"))),
         Image.new(Pathname.new(File.join(@small_paintings, "IMG_0458 copy.jpg")))
       ],
       [
-        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0460.jpg"))),
+        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0460.JPG"))),
         Image.new(Pathname.new(File.join(@small_paintings, "IMG_0460 copy.jpg")))
       ],
       [
@@ -102,11 +104,11 @@ class TestVernissage < Test::Unit::TestCase
   def test_generates_exhibits_list
     expecteds = [
       Exhibit.new(
-        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.jpg"))),
+        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.JPG"))),
         Image.new(Pathname.new(File.join(@small_paintings, "IMG_0458 copy.jpg")))
       ),
       Exhibit.new(
-        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0460.jpg"))),
+        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0460.JPG"))),
         Image.new(Pathname.new(File.join(@small_paintings, "IMG_0460 copy.jpg")))
       ),
       Exhibit.new(
@@ -126,8 +128,8 @@ class TestVernissage < Test::Unit::TestCase
                             Pathname.new(@small_paintings))
 
     expecteds = [
-      Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.jpg"))),
-      Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0460.jpg"))),
+      Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.JPG"))),
+      Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0460.JPG"))),
       Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0461.jpg"))),
       Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0462.jpg")))
     ]

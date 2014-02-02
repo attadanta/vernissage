@@ -5,6 +5,9 @@ module Vernissage
 
   class Curation
 
+    attr_reader :path_to_originals
+    attr_reader :path_to_thumbnails
+
     def initialize(path_to_originals, path_to_thumbnails)
       @path_to_originals = path_to_originals
       @path_to_thumbnails = path_to_thumbnails
@@ -19,15 +22,25 @@ module Vernissage
       find_matches.select { |pair| pair[0].nil? }.map { |pair| pair[1] }
     end
 
+    def any_unmatched_original_images?
+      not find_unmatched_originals.empty?
+    end
+
+    def any_unmatched_thumbnails?
+      not find_unmatched_thumbnails.empty?
+    end
+
     def find_matches
       @pairs.to_ary
     end
 
     def to_gallery
       gallery = Gallery.new(@path_to_originals)
+
       exhibits.each do |exhibit|
         gallery.add_exhibit exhibit
       end
+
       gallery
     end
 
@@ -40,11 +53,11 @@ module Vernissage
     end
 
     def thumbnails
-      @path_to_thumbnails.children.map { |entry| Image.new(entry) }
+      select_images(@path_to_thumbnails)
     end
 
     def original_images
-      @path_to_originals.children.map { |entry| Image.new(entry) }
+      select_images(@path_to_originals)
     end
 
     private
@@ -69,6 +82,14 @@ module Vernissage
       thumbs.each { |thumb| pairs.push [ nil, thumb ] }
 
       pairs
+    end
+
+    def select_images(directory)
+      directory.children.select do |file|
+        not file.basename.to_s.start_with?('.') and Image.is_image? file
+      end.map do |entry|
+        Image.new(entry)
+      end
     end
 
   end
