@@ -3,11 +3,21 @@ require 'pathname'
 
 module Vernissage
 
+  # Curation matches images placed in two directories. The first directory
+  # contains the original images and the second contains the thumbnails. Image
+  # matching is based on filenames. Curation generates the galleries on the
+  # site.
   class Curation
 
     attr_reader :path_to_originals
     attr_reader :path_to_thumbnails
 
+    # Class constructor.
+    #
+    # @param path_to_originals [Pathname] a directory containing the original,
+    #   full-size images. Must exist.
+    # @param path_to_thumbnails [Pathname] directory containing the image
+    #   thumbnails. Must exist.
     def initialize(path_to_originals, path_to_thumbnails)
       @path_to_originals = path_to_originals
       @path_to_thumbnails = path_to_thumbnails
