@@ -5,11 +5,15 @@ module Vernissage
   # A mixin providing the {#match_items} method performing the matching of
   # items across the originals and thumbnails. Clients must implement
   # `original_items` and `thumbnail_items` which return a list of
-  # {Vernissage::Comparable}s from the respective directory.
+  # {Vernissage::Comparable}s from the respective section.
   module Curator
 
     protected
 
+    # Matches the original items with their thumbnails.
+    #
+    # @return [Array<Array>] an array of tuples in the form `[original,
+    #   thumbnail]`. A nil in one of these fields indicates a missing match.
     def match_items
       pairs = []
 

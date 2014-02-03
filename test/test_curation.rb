@@ -55,30 +55,22 @@ class TestVernissage < Test::Unit::TestCase
 
   def test_matches_images
     expecteds = [
-      [
+      Exhibit.new(
         Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0458.JPG"))),
         Image.new(Pathname.new(File.join(@small_paintings, "IMG_0458 copy.jpg")))
-      ],
-      [
+      ),
+      Exhibit.new(
         Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0460.JPG"))),
         Image.new(Pathname.new(File.join(@small_paintings, "IMG_0460 copy.jpg")))
-      ],
-      [
+      ),
+      Exhibit.new(
         Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0461.jpg"))),
         Image.new(Pathname.new(File.join(@small_paintings, "IMG_0461 copy.jpg")))
-      ],
-      [
-        Image.new(Pathname.new(File.join(@orig_paintings, "IMG_0462.jpg"))),
-        nil
-      ],
-      [
-        nil,
-        Image.new(Pathname.new(File.join(@small_paintings, "IMG_0463 copy.jpg")))
-      ]
+      )
     ]
 
     actuals = Curation.new(Pathname.new(@orig_paintings),
-                           Pathname.new(@small_paintings)).find_matches
+                           Pathname.new(@small_paintings)).exhibits
 
     assert_equal expecteds, actuals
   end
