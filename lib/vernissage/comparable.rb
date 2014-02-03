@@ -3,7 +3,7 @@
 module Vernissage
 
   # A mixin providing comparison and relatedness methods. Clients must provide
-  # a `path` member or method.
+  # a `path` member.
   module Comparable
 
     # @return [String] the basename of this object's path, without the

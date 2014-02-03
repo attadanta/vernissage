@@ -38,16 +38,7 @@ module Vernissage
     #
     # @return [Array<Vernissage::Curation>] gallery curations.
     def curations
-      curations = []
-
-      originals.each do |original|
-        thumb_match = original.find_match(thumbnails)
-        unless thumb_match.nil?
-          curations << Curation.new(original.path, thumb_match.path)
-        end
-      end
-
-      curations
+      full_pairs.map { |pair| Curation.new(pair[0].path, pair[1].path) }
     end
 
     # Equality check.

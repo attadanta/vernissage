@@ -79,9 +79,7 @@ module Vernissage
     #
     # @return [Array<Vernissage::Exhibit>] a list of exhibits.
     def exhibits
-      find_matches.reject do |pair|
-        pair[0].nil? or pair[1].nil?
-      end.map do |pair|
+      full_pairs.map do |pair|
         Exhibit.new(pair[0], pair[1])
       end
     end
@@ -110,13 +108,9 @@ module Vernissage
       end
     end
 
-    def original_items
-      original_images
-    end
+    alias :original_items :original_images
 
-    def thumbnail_items
-      thumbnails
-    end
+    alias :thumbnail_items :thumbnails
 
   end
 
