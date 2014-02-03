@@ -64,13 +64,9 @@ module Vernissage
 
     private
 
-    def original_items
-      originals
-    end
+    alias :original_items :originals
 
-    def thumbnail_items
-      thumbnails
-    end
+    alias :thumbnail_items :thumbnails
 
     def subdirectories(path)
       path.children.select { |child| child.directory? }
