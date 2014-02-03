@@ -9,8 +9,8 @@ module Vernissage
 
     # Class constructor
     #
-    # @param [Pathname] the path to the original image.
-    # @param [Pathname] the path to the image thumbnail.
+    # @param [Pathname] original_image  a path to the original image.
+    # @param [Pathname] thumbnail a path to the image thumbnail.
     def initialize(original_image, thumbnail)
       @original_image = original_image
       @thumbnail = thumbnail

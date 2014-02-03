@@ -10,7 +10,7 @@ module Vernissage
     end
 
     def name_fragments
-      basename.split(' ')
+      basename.split(' ').map { |fragment| fragment.downcase }
     end
 
     def name_has_multiple_fragments?
@@ -22,11 +22,7 @@ module Vernissage
     end
 
     def related_to?(image)
-      if self.name_has_multiple_fragments?
-        image.name_contained_in_fragments? self.name_fragments
-      else
-        self.name_contained_in_fragments? image.name_fragments
-      end
+      not (self.name_fragments & image.name_fragments).empty?
     end
 
     def ==(other)
@@ -35,14 +31,6 @@ module Vernissage
       else
         false
       end
-    end
-
-    protected
-
-    def name_contained_in_fragments?(fragments)
-      fragments.map do |f|
-        f.downcase
-      end.include? self.basename.downcase
     end
 
   end

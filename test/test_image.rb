@@ -33,8 +33,8 @@ class TestImage < Test::Unit::TestCase
   end
 
   def test_fragments
-    assert_equal [ 'IMG_0508' ], Image.new('IMG_0508').name_fragments
-    assert_equal %w{IMG_0508 copy}, Image.new('IMG_0508 copy').name_fragments
+    assert_equal [ 'img_0508' ], Image.new('img_0508').name_fragments
+    assert_equal %w{img_0508 copy}, Image.new('IMG_0508 copy').name_fragments
   end
 
   def name_has_multiple_fragments
@@ -44,6 +44,10 @@ class TestImage < Test::Unit::TestCase
 
   def test_related_to_smaller_image
     assert Image.new('file.jpeg').related_to? Image.new('file small.jpeg')
+  end
+
+  def test_related_to_smaller_image_multiple_names
+    assert Image.new('img one.jpeg').related_to? Image.new('img one small.jpeg')
   end
 
   def test_related_to_copy
