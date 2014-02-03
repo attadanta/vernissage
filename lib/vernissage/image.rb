@@ -6,7 +6,7 @@ module Vernissage
   # An image file abstraction.
   class Image
 
-    include Curator
+    include Comparable
 
     class << self
 

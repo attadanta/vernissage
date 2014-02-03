@@ -9,6 +9,8 @@ module Vernissage
   # site.
   class Curation
 
+    include Curator
+
     attr_reader :path_to_originals
     attr_reader :path_to_thumbnails
 
@@ -21,7 +23,7 @@ module Vernissage
     def initialize(path_to_originals, path_to_thumbnails)
       @path_to_originals = path_to_originals
       @path_to_thumbnails = path_to_thumbnails
-      @pairs = match_images
+      @pairs = match_items
     end
 
     # Collects all unmatched original images.
@@ -100,34 +102,20 @@ module Vernissage
 
     private
 
-    def match_images
-      pairs = []
-
-      originals = original_images
-      thumbs = thumbnails
-
-      until originals.empty? do
-        left_candidate = originals.shift
-        match = thumbs.index do |thumb|
-          left_candidate.related_to? thumb
-        end
-        unless match.nil?
-          pairs.push [ left_candidate, thumbs.slice!(match) ]
-        else
-          pairs.push [ left_candidate, match ]
-        end
-      end
-      thumbs.each { |thumb| pairs.push [ nil, thumb ] }
-
-      pairs
-    end
-
     def select_images(directory)
       directory.children.select do |file|
         not file.basename.to_s.start_with?('.') and Image.is_image? file
       end.map do |entry|
         Image.new(entry)
       end
+    end
+
+    def original_items
+      original_images
+    end
+
+    def thumbnail_items
+      thumbnails
     end
 
   end

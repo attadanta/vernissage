@@ -4,6 +4,8 @@ module Vernissage
   # Discovery handles the image matching on the directory level.
   class Discovery
 
+    include Vernissage::Curator
+
     attr_reader :path_to_originals
     attr_reader :path_to_thumbnails
 
@@ -70,6 +72,14 @@ module Vernissage
     end
 
     private
+
+    def original_items
+      originals
+    end
+
+    def thumbnail_items
+      thumbnails
+    end
 
     def subdirectories(path)
       path.children.select { |child| child.directory? }

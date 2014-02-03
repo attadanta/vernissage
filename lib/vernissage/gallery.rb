@@ -7,7 +7,7 @@ module Vernissage
   # (exhibits).
   class Gallery
 
-    include Curator
+    include Comparable
 
     # The gallery's path.
     #
