@@ -8,9 +8,9 @@ module Vernissage
     # Class constructor.
     #
     # @param [Vernissage::Discovery] discovery a discovery instance.
-    # @param [Pathname] bio a path to the bio file.
-    # @param [Pathname] contact a path to the contact file.
-    # @param [Pathname] template a path to the site template.
+    # @param [Pathname] bio a path to the bio file. Must exist.
+    # @param [Pathname] contact a path to the contact file. Must exist.
+    # @param [Pathname] template a path to the site template. Must exist.
     def initialize(discovery, bio, contact, template)
       @curations = discovery.curations
       @bio = Vita.new.parse(bio.read)

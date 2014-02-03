@@ -31,8 +31,8 @@ module Vernissage
       subdirectories(@path_to_thumbnails).map { |path| Gallery.new(path) }
     end
 
-    # Generates the {Curation}s after matching the galleries from the originals
-    # and thumbnails directories.
+    # Collects {Curation}s after matching the galleries from the originals and
+    # thumbnails directories.
     #
     # @return [Array<Vernissage::Curation>] gallery curations.
     def curations
@@ -50,6 +50,8 @@ module Vernissage
 
     # Equality check.
     #
+    # @param [Discovery] other the object to check against.
+    #
     # @return [Boolean]
     def ==(other)
       if other.kind_of? Discovery
@@ -61,8 +63,10 @@ module Vernissage
     end
 
     # Returns a developer friendly representation of the object.
+    #
+    # return [String]
     def inspect
-      "#<Vernissage::Discovery originals:" + @path_to_originals.inspect + " thumbs:" + @path_to_thumbnails.inspect + " >"
+      "#<Vernissage::Discovery originals:#{@path_to_originals.inspect} thumbs:#{@path_to_thumbnails.inspect}>"
     end
 
     private

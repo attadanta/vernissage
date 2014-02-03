@@ -56,7 +56,7 @@ module Vernissage
     # @return [Array<Array>] a list of tuples in the form [original, thumb]. A
     #   nil in the respective field indicates a missing match.
     def find_matches
-      @pairs.to_ary
+      @pairs.dup
     end
 
     # Collects the matched images in a Gallery. The name of the gallery is
