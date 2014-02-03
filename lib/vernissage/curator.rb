@@ -40,6 +40,9 @@ module Vernissage
       not (self.name_fragments & object.name_fragments).empty?
     end
 
+    # The equality check is based on the path of the {Curator}.
+    #
+    # @param [Object, #path] other the object to check equality against.
     def ==(other)
       if other.respond_to? :path
         self.path.basename == other.path.basename

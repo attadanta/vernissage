@@ -35,7 +35,7 @@ Here the originals are placed under `Works` and the thumbnails, well, under
 `Thumbnails`. The level under those classifies the images in *galleries*. In
 the above case we have a single gallery called "Paradise Lost". Vernissage
 compiles the galleries from the originals directory and looks for their pairs
-in the thumbnails directory. It then lets display the collection of works on a
+in the thumbnails directory. It then displays the collection of works on a
 single page, defined by a template.
 
 ## Code Walkthrough
@@ -46,17 +46,18 @@ points:
  - `Vernissage::Finissage` is exposes the compiled galleries to the site
    template.
  - `Vernissage::Discovery` deals with the directory-level matching of the
-   images. It gerates `Curation`s that pair originals with their thumbnails.
+   images. It gerates `Curation`s which pair originals with their thumbnails.
  - `Vernissage::Curator` implements the image similarity logic.
 
 ## Runtime Dependencies
 
- - HAML: provides the templating engine for the site generation.
+ - [HAML](http://haml.info/): provides the templating engine for the site
+   generation.
 
 ## Development Dependencies
 
- - FakeFS: makes filesystem tests possible.
- - YARD: for code documentation.
+ - [FakeFS](http://defunkt.io/fakefs/): makes filesystem tests possible.
+ - [YARD](http://yardoc.org/): for code documentation.
 
 ## License
 

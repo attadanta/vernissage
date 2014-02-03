@@ -5,7 +5,14 @@ module Vernissage
   # An exhibit is a pair of images linking an original with its thumbnail.
   class Exhibit
 
+    # The original image.
+    #
+    # @return [Vernissage::Image] the original image.
     attr_reader :original_image
+
+    # The image thumbnail.
+    #
+    # @return [Vernissage::Image] the thumbnail.
     attr_reader :thumbnail
 
     # Class constructor.
@@ -17,6 +24,9 @@ module Vernissage
       @thumbnail = thumbnail
     end
 
+    # Equality check.
+    #
+    # @param [Vernissage::Exhibit] other other exhibit.
     def ==(other)
       @original_image == other.original_image &&
         @thumbnail == other.thumbnail

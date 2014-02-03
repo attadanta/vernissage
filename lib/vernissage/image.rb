@@ -3,6 +3,7 @@ require 'pathname'
 
 module Vernissage
 
+  # An image file abstraction.
   class Image
 
     include Curator
@@ -22,6 +23,8 @@ module Vernissage
 
     end
 
+    # Image path
+    # @return [Pathname]
     attr_reader :path
 
     # Image constructor.

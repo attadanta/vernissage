@@ -61,6 +61,12 @@ module Vernissage
       @contact
     end
 
+    # Renders the website with the given template.
+    #
+    # @param [Pathname] webroot the path to the webroot to subtract the image
+    #   sources from.
+    #
+    # @return [String]
     def render(webroot=Pathname.new('/'))
       @webroot = webroot
       Haml::Engine.new(@template).render(self)
