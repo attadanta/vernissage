@@ -4,7 +4,6 @@ require 'pathname'
 require 'stringio'
 require 'haml'
 
-require 'vernissage/frame'
 require 'vernissage/discovery'
 require 'vernissage/curator'
 require 'vernissage/image'

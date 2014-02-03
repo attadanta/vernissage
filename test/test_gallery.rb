@@ -29,30 +29,4 @@ class TestGallery < Test::Unit::TestCase
     )
   end
 
-  def test_render
-    gallery = Gallery.new(Pathname.new(File.join("images", "Paintings")))
-    gallery.add_exhibit(
-      Exhibit.new(
-        Image.new(Pathname.new("IMG_1.png")),
-        Image.new(Pathname.new("IMG_1 small.png"))
-      )
-    )
-    gallery.add_exhibit(
-      Exhibit.new(
-        Image.new(Pathname.new("IMG_2.png")),
-        Image.new(Pathname.new("IMG_2 small.png"))
-      )
-    )
-    expected = <<-END
-      <section id="paintings">
-        <div class="gallery">
-          <h1>Paintings</h1>
-          <a href="IMG_1.png"><img src="IMG_1 small.png" /></a>
-          <a href="IMG_2.png"><img src="IMG_2 small.png" /></a>
-        </div>
-      </section>
-    END
-    assert_equal(expected, gallery.render)
-  end
-
 end

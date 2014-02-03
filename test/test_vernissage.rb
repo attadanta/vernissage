@@ -51,8 +51,4 @@ class TestFinissage < Test::Unit::TestCase
     assert_equal(actual, @vernissage.education)
   end
 
-  def test_render
-    puts @vernissage.render(Pathname.new(''))
-  end
-
 end
