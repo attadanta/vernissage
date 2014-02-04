@@ -57,14 +57,15 @@ module Vernissage
     #
     # @return [String] list of unmatched images formatted for the standard out.
     def unmatched_images(curation)
-      io = StringIO.new
-      io.puts header(curation.to_gallery.name)
-      io.puts('Unmatched original images:')
-      io.puts list_images(curation.find_unmatched_originals)
-      io.puts
-      io.puts('Unmatched thumbnails:')
-      io.puts list_images(curation.find_unmatched_thumbnails)
-      io.close; io.string
+      StringIO.open do |io|
+        io.puts header(curation.to_gallery.name)
+        io.puts('Unmatched original images:')
+        io.puts list_images(curation.find_unmatched_originals)
+        io.puts
+        io.puts('Unmatched thumbnails:')
+        io.puts list_images(curation.find_unmatched_thumbnails)
+        io.string
+      end
     end
 
     # Formats a list of images for the standard output.
@@ -73,15 +74,16 @@ module Vernissage
     #
     # @return [String]
     def list_images(images)
-      io = StringIO.new
-      unless images.empty?
-        images.each do |image|
-          io.puts(' - ' + image.path.to_s)
+      StringIO.open do |io|
+        unless images.empty?
+          images.each do |image|
+            io.puts(' - ' + image.path.to_s)
+          end
+        else
+          io.puts "None!"
         end
-      else
-        io.puts "None!"
+        io.string
       end
-      io.close; io.string
     end
 
     # Creates the report heading.
@@ -112,14 +114,15 @@ module Vernissage
     #
     # @return [String]
     def generate
-      io = StringIO.new
-      io.puts header(generated_at_line, '=')
-      io.puts
-      io.puts header('Summary (o:t:m)')
-      io.puts(summaries.join("\n"))
-      io.puts
-      io.puts(details.join("\n"))
-      io.close; io.string
+      StringIO.open do |io|
+        io.puts header(generated_at_line, '=')
+        io.puts
+        io.puts header('Summary (o:t:m)')
+        io.puts(summaries.join("\n"))
+        io.puts
+        io.puts(details.join("\n"))
+        io.string
+      end
     end
 
   end
