@@ -56,13 +56,7 @@ module Vernissage
     #
     # @return [Vernissage::Gallery] a Gallery instance with all matched images.
     def to_gallery
-      gallery = Gallery.new(@path_to_originals)
-
-      exhibits.each do |exhibit|
-        gallery.add_exhibit exhibit
-      end
-
-      gallery
+      Gallery.new(@path_to_originals, exhibits)
     end
 
     # Returns an array of matched images.

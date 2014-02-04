@@ -9,27 +9,27 @@ Vernissage assumes two sets of image files, called originals and thumbnails,
 that are placed under different directories. Here's an example directory tree
 processed by `vernissage.rb`:
 
-  .
-  |
-  + Works
-  |
-  +-- Paradise Lost
-  |
-  +---- Belshazzar's Feast.jpg
-  |
-  +---- Satan Presiding at the Infernal Council.png
-  |
-  +---- The Temptation and Fall of Eve.JPG
-  |
-  + Thumbnails
-  |
-  +-- Paradise Lost
-  |
-  +---- Belshazzar's.jpg
-  |
-  +---- Satan at the Infernal Council.png
-  |
-  +---- Eve.jpg
+    .
+    |
+    + Works
+    |
+    +-- Paradise Lost
+    |
+    +---- Belshazzar's Feast.jpg
+    |
+    +---- Satan Presiding at the Infernal Council.png
+    |
+    +---- The Temptation and Fall of Eve.JPG
+    |
+    + Thumbnails
+    |
+    +-- Paradise Lost
+    |
+    +---- Belshazzar's.jpg
+    |
+    +---- Satan at the Infernal Council.png
+    |
+    +---- Eve.jpg
 
 Here the originals are placed under `Works` and the thumbnails, well, under
 `Thumbnails`. The level under those classifies the images in *galleries*. In
@@ -56,7 +56,7 @@ points:
 
 ## Development Dependencies
 
- - [FakeFS](http://defunkt.io/fakefs/): makes filesystem tests possible.
+ - [FakeFS](https://github.com/defunkt/fakefs): makes filesystem tests possible.
  - [YARD](http://yardoc.org/): for code documentation.
 
 ## License

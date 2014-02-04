@@ -22,10 +22,11 @@ module Vernissage
     # Gallery constructor.
     #
     # @param [Pathname] path a the directory path to the original images.
-    def initialize(path)
+    # @param [Array<Vernissage::Exhibit>] exhibits a list of exhibits.
+    def initialize(path, exhibits=[])
       @path = path
       @name = path.basename.to_s.capitalize
-      @exhibits = []
+      @exhibits = exhibits
     end
 
     # Adds an exhibit to this gallery.

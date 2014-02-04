@@ -3,7 +3,7 @@
 module Vernissage
 
   # A mixin providing comparison and relatedness methods. Clients must provide
-  # a `path` member.
+  # a `#path` member.
   module Comparable
 
     # @return [String] the basename of this object's path, without the
@@ -24,7 +24,7 @@ module Vernissage
     # Finds the first curator object in the given array {#related_to?} the
     # receiver.
     #
-    # @param [Array<Vernissage::Curator>] objects an array of comparable
+    # @param [Array<Vernissage::Comparable>] objects an array of comparable
     #   objects.
     # @return a related object, if found, or nil otherwise.
     def find_match(objects)
@@ -34,7 +34,7 @@ module Vernissage
     # Checks if two objects are related. The comparison is established by
     # intersecting their named fragments.
     #
-    # @param [Vernissage::Curator] object a comparable object.
+    # @param [Vernissage::Comparable] object a comparable object.
     def related_to?(object)
       not (self.name_fragments & object.name_fragments).empty?
     end

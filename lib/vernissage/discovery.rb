@@ -4,7 +4,7 @@ module Vernissage
   # Discovery handles the image matching on the directory level.
   class Discovery
 
-    include Vernissage::Curator
+    include Curator
 
     attr_reader :path_to_originals
     attr_reader :path_to_thumbnails
