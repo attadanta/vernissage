@@ -5,6 +5,12 @@ module Vernissage
   # Assembles the site.
   class Finissage
 
+    # Returns the parsed contact information.
+    #
+    # @return [Hash<String, Array<String>>] a hash containing the contact
+    #   information, as given by the contact file.
+    attr_reader :contact
+
     # Class constructor.
     #
     # @param [Vernissage::Discovery] discovery a discovery instance.
@@ -53,21 +59,13 @@ module Vernissage
       @bio.fetch('Education')
     end
 
-    # Returns the parsed contact information.
-    #
-    # @return [Hash<String, Array<String>>] a hash containing the contact
-    #   information, as given by the contact file.
-    def contact
-      @contact
-    end
-
     # Renders the website with the given template.
     #
     # @param [Pathname] webroot the path to the webroot to subtract the image
     #   sources from.
     #
     # @return [String]
-    def render(webroot=Pathname.new('/'))
+    def render(webroot = Pathname.new('/'))
       @webroot = webroot
       Haml::Engine.new(@template).render(self)
     end

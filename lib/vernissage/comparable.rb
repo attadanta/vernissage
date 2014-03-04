@@ -9,7 +9,7 @@ module Vernissage
     # @return [String] the basename of this object's path, without the
     #   extension.
     def basename
-      self.path.basename(self.path.extname).to_s
+      path.basename(path.extname).to_s
     end
 
     # Returns the fragments of this object's base filename. Fragments are
@@ -36,7 +36,7 @@ module Vernissage
     #
     # @param [Vernissage::Comparable] object a comparable object.
     def related_to?(object)
-      not (self.name_fragments & object.name_fragments).empty?
+      !(name_fragments & object.name_fragments).empty?
     end
 
     # The equality check is based on the path of the {Curator}.
@@ -44,7 +44,7 @@ module Vernissage
     # @param [Object, #path] other the object to check equality against.
     def ==(other)
       if other.respond_to? :path
-        self.path.basename == other.path.basename
+        path.basename == other.path.basename
       else
         false
       end

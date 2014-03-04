@@ -48,7 +48,7 @@ module Vernissage
     # @return [Boolean]
     def ==(other)
       if other.kind_of? Discovery
-        other.path_to_originals == @path_to_originals and
+        other.path_to_originals == @path_to_originals &&
           other.path_to_thumbnails == @path_to_thumbnails
       else
         false
@@ -59,14 +59,15 @@ module Vernissage
     #
     # return [String]
     def inspect
-      "#<Vernissage::Discovery originals:#{@path_to_originals.inspect} thumbs:#{@path_to_thumbnails.inspect}>"
+      "#<Vernissage::Discovery originals:#{@path_to_originals.inspect} " +
+        "thumbs:#{@path_to_thumbnails.inspect}>"
     end
 
     private
 
-    alias :original_items :originals
+    alias_method :original_items, :originals
 
-    alias :thumbnail_items :thumbnails
+    alias_method :thumbnail_items, :thumbnails
 
     def subdirectories(path)
       path.children.select { |child| child.directory? }

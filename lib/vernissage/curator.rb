@@ -7,7 +7,6 @@ module Vernissage
   # `original_items` and `thumbnail_items` which return a list of
   # {Vernissage::Comparable}s from the respective section.
   module Curator
-
     protected
 
     # Matches the original items with their thumbnails.
@@ -20,18 +19,18 @@ module Vernissage
       originals = original_items
       thumbs = thumbnail_items
 
-      until originals.empty? do
+      until originals.empty?
         left_candidate = originals.shift
         match = thumbs.index do |thumb|
           left_candidate.related_to? thumb
         end
-        unless match.nil?
-          pairs.push [ left_candidate, thumbs.slice!(match) ]
+        if match.nil?
+          pairs.push [left_candidate, match]
         else
-          pairs.push [ left_candidate, match ]
+          pairs.push [left_candidate, thumbs.slice!(match)]
         end
       end
-      thumbs.each { |thumb| pairs.push [ nil, thumb ] }
+      thumbs.each { |thumb| pairs.push [nil, thumb] }
 
       pairs
     end
@@ -41,7 +40,7 @@ module Vernissage
     # @return [Array<Array>]
     def full_pairs
       match_items.reject do |pair|
-        pair[0].nil? or pair[1].nil?
+        pair[0].nil? || pair[1].nil?
       end
     end
 

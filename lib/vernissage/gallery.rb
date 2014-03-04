@@ -23,7 +23,7 @@ module Vernissage
     #
     # @param [Pathname] path a the directory path to the original images.
     # @param [Array<Vernissage::Exhibit>] exhibits a list of exhibits.
-    def initialize(path, exhibits=[])
+    def initialize(path, exhibits = [])
       @path = path
       @name = path.basename.to_s.capitalize
       @exhibits = exhibits

@@ -42,13 +42,13 @@ module Vernissage
     # Returns `true`, if there are unmatched images from the originals
     #   directory, and `false` otherwise.
     def any_unmatched_original_images?
-      not find_unmatched_originals.empty?
+      !find_unmatched_originals.empty?
     end
 
     # Returns `true`, if there are unmatched images from the thumbnails
     #   directory, and `false` otherwise.
     def any_unmatched_thumbnails?
-      not find_unmatched_thumbnails.empty?
+      !find_unmatched_thumbnails.empty?
     end
 
     # Collects the matched images in a Gallery. The name of the gallery is
@@ -86,15 +86,15 @@ module Vernissage
 
     def select_images(directory)
       directory.children.select do |file|
-        not file.basename.to_s.start_with?('.') and Image.is_image? file
+        !file.basename.to_s.start_with?('.') && Image.is_image?(file)
       end.map do |entry|
         Image.new(entry)
       end
     end
 
-    alias :original_items :original_images
+    alias_method :original_items, :original_images
 
-    alias :thumbnail_items :thumbnails
+    alias_method :thumbnail_items, :thumbnails
 
   end
 

@@ -32,7 +32,7 @@ module Vernissage
     # @return [String]
     def parse_item(line)
       leader = line =~ /-/
-      line[(leader+2)..-1]
+      line[(leader + 2)..-1]
     end
 
     # Determines if the given line indicates an item. An item is preceded by
@@ -52,7 +52,7 @@ module Vernissage
     #
     # @return [Boolean]
     def is_header_line(line)
-      !is_item_line(line) && line.end_with?(":")
+      !is_item_line(line) && line.end_with?(':')
     end
 
     # Parses the contents of a text file.
@@ -63,11 +63,11 @@ module Vernissage
     def parse(contents)
       vita = {}
 
-      last_heading = ""
+      last_heading = ''
       contents.each_line do |line|
         line = line.chomp.strip
         unless line.empty?
-          if (is_header_line(line))
+          if is_header_line(line)
             last_heading = parse_header(line)
           else
             line = parse_item(line)

@@ -75,12 +75,12 @@ module Vernissage
     # @return [String]
     def list_images(images)
       StringIO.open do |io|
-        unless images.empty?
+        if images.empty?
+          io.puts 'None!'
+        else
           images.each do |image|
             io.puts(' - ' + image.path.to_s)
           end
-        else
-          io.puts "None!"
         end
         io.string
       end
@@ -90,14 +90,14 @@ module Vernissage
     #
     # @return [String] heading text.
     def generated_at_line
-      'vernissage.rb' + ' ' + timestamp
+      "vernissage.rb #{timestamp}"
     end
 
     # Formats the current time for the standard out.
     #
     # @return [String] timestamp.
     def timestamp
-      Time.new.strftime("%Y-%m-%d @ %H:%M:%S")
+      Time.new.strftime('%Y-%m-%d @ %H:%M:%S')
     end
 
     # Formats a text for a heading displayed on the standard output.
@@ -106,7 +106,7 @@ module Vernissage
     # @param [String] underline the character to underline the text with.
     #
     # @return [String] the formatted text.
-    def header(text, underline='-')
+    def header(text, underline = '-')
       text + "\n" + underline * text.length + "\n"
     end
 
