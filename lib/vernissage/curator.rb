@@ -35,7 +35,7 @@ module Vernissage
       pairs
     end
 
-    # Returns a list of pairs with both elements defined, i.e. not null.
+    # Returns a list of pairs with both elements defined, i.e. not nil.
     #
     # @return [Array<Array>]
     def full_pairs

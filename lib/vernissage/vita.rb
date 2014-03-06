@@ -41,7 +41,7 @@ module Vernissage
     # @param [String] line line of text.
     #
     # @return [Boolean]
-    def is_item_line(line)
+    def item_line?(line)
       line.start_with? "\s-"
     end
 
@@ -51,8 +51,8 @@ module Vernissage
     # @param [String] line line of text.
     #
     # @return [Boolean]
-    def is_header_line(line)
-      !is_item_line(line) && line.end_with?(':')
+    def header_line?(line)
+      !item_line?(line) && line.end_with?(':')
     end
 
     # Parses the contents of a text file.
@@ -67,7 +67,7 @@ module Vernissage
       contents.each_line do |line|
         line = line.chomp.strip
         unless line.empty?
-          if is_header_line(line)
+          if header_line?(line)
             last_heading = parse_header(line)
           else
             line = parse_item(line)

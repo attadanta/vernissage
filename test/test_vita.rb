@@ -16,27 +16,27 @@ class TestVita < Test::Unit::TestCase
   end
 
   def test_detects_item_line
-    assert Vita.new.is_item_line(" - 2013 - Louvre; exhibition")
+    assert Vita.new.item_line?(" - 2013 - Louvre; exhibition")
   end
 
   def test_interprets_blank_line_as_false_item_line
-    assert !(Vita.new.is_item_line(""))
+    assert !(Vita.new.item_line?(""))
   end
 
   def test_interprets_content_line_as_false_item_line
-    assert !(Vita.new.is_item_line("lorem ipsum"))
+    assert !(Vita.new.item_line?("lorem ipsum"))
   end
 
   def test_parses_header_line
-    assert Vita.new.is_header_line("Education:")
+    assert Vita.new.header_line?("Education:")
   end
 
   def test_interprets_blank_line_as_false_header_line
-    assert !(Vita.new.is_header_line(""))
+    assert !(Vita.new.header_line?(""))
   end
 
   def test_interprets_content_line_as_false_header_line
-    assert !(Vita.new.is_header_line("education"))
+    assert !(Vita.new.header_line?("education"))
   end
 
   def test_parses_empty_vita
