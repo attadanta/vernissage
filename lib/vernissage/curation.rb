@@ -2,13 +2,11 @@
 require 'pathname'
 
 module Vernissage
-
   # Curation matches images placed in two directories. The first directory
   # contains the original images and the second contains the thumbnails. Image
   # matching is based on filenames. Curation generates the galleries on the
   # site.
   class Curation
-
     include Curator
 
     attr_reader :path_to_originals
@@ -86,16 +84,13 @@ module Vernissage
 
     def select_images(directory)
       directory.children.select do |file|
-        !file.basename.to_s.start_with?('.') && Image.is_image?(file)
+        !file.basename.to_s.start_with?('.') && Image.image?(file)
       end.map do |entry|
         Image.new(entry)
       end
     end
 
     alias_method :original_items, :original_images
-
     alias_method :thumbnail_items, :thumbnails
-
   end
-
 end

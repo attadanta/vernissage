@@ -1,10 +1,8 @@
 # coding: utf-8
 
 module Vernissage
-
   # Assembles the site.
   class Finissage
-
     # Returns the parsed contact information.
     #
     # @return [Hash<String, Array<String>>] a hash containing the contact
@@ -69,7 +67,5 @@ module Vernissage
       @webroot = webroot
       Haml::Engine.new(@template).render(self)
     end
-
   end
-
 end

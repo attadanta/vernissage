@@ -1,10 +1,8 @@
 # coding: utf-8
 
 module Vernissage
-
   # Generates site statistics.
   class Report
-
     # Report constructor.
     #
     # @param [Array<Curation>] curations
@@ -124,7 +122,5 @@ module Vernissage
         io.string
       end
     end
-
   end
-
 end

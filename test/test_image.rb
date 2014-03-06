@@ -5,20 +5,19 @@ require 'pathname'
 require 'test/unit'
 
 class TestImage < Test::Unit::TestCase
-
   include Vernissage
 
   def test_is_false_image
-    assert !(Image.is_image? 'image.doc')
-    assert !(Image.is_image? 'image.txt')
-    assert !(Image.is_image? Pathname.new('images'))
+    assert !Image.image?('image.doc')
+    assert !Image.image?('image.txt')
+    assert !Image.image?(Pathname.new('images'))
   end
 
   def test_is_image
-    assert Image.is_image? 'image.jpeg'
-    assert Image.is_image? 'image.jpg'
-    assert Image.is_image? 'image.png'
-    assert Image.is_image? 'image.gif'
+    assert Image.image? 'image.jpeg'
+    assert Image.image? 'image.jpg'
+    assert Image.image? 'image.png'
+    assert Image.image? 'image.gif'
   end
 
   def test_init
@@ -57,5 +56,4 @@ class TestImage < Test::Unit::TestCase
   def test_false_similarity
     assert !(Image.new('IMG_0508.jpeg').related_to? Image.new('IMG_0509.jpeg'))
   end
-
 end

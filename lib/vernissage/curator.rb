@@ -1,7 +1,6 @@
 # coding: utf-8
 
 module Vernissage
-
   # A mixin providing the {#match_items} method performing the matching of
   # items across the originals and thumbnails. Clients must implement
   # `original_items` and `thumbnail_items` which return a list of
@@ -43,7 +42,5 @@ module Vernissage
         pair[0].nil? || pair[1].nil?
       end
     end
-
   end
-
 end

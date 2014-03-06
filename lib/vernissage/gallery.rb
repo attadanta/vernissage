@@ -2,11 +2,9 @@
 require 'pathname'
 
 module Vernissage
-
   # A gallery is a directory abstraction. Collects all matched images
   # (exhibits).
   class Gallery
-
     include Comparable
 
     # The gallery's path.
@@ -42,7 +40,5 @@ module Vernissage
     def exhibits
       @exhibits.dup
     end
-
   end
-
 end

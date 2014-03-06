@@ -1,15 +1,11 @@
 # coding: utf-8
-require 'pathname'
 
 module Vernissage
-
   # An image file abstraction.
   class Image
-
     include Comparable
 
     class << self
-
       # Lists the supported image formats.
       IMAGE_EXTENSIONS = %w{ .gif .jpg .jpeg .png }
 
@@ -17,10 +13,9 @@ module Vernissage
       # otherwise.
       #
       # @param [String, Pathname] path file path.
-      def is_image?(path)
+      def image?(path)
         IMAGE_EXTENSIONS.include? Pathname.new(path).extname.downcase
       end
-
     end
 
     # Image path
@@ -33,7 +28,5 @@ module Vernissage
     def initialize(path)
       @path = Pathname.new(path)
     end
-
   end
-
 end

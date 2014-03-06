@@ -1,9 +1,7 @@
 # coding: utf-8
 module Vernissage
-
   # Discovery handles the image matching on the directory level.
   class Discovery
-
     include Curator
 
     attr_reader :path_to_originals
@@ -66,13 +64,10 @@ module Vernissage
     private
 
     alias_method :original_items, :originals
-
     alias_method :thumbnail_items, :thumbnails
 
     def subdirectories(path)
       path.children.select { |child| child.directory? }
     end
-
   end
-
 end

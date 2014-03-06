@@ -1,7 +1,6 @@
 # coding: utf-8
 
 module Vernissage
-
   # Parses the bio and contact files for the website. The scheme of these files
   # is a simple collection of items under headings. Here's an example:
   #
@@ -15,7 +14,6 @@ module Vernissage
   #     - >20 years of villain chasing and crime investigation.
   #     - sparring partner of Bruce Wayne.
   class Vita
-
     # Parses a heading.
     #
     # @param [String] line
@@ -80,7 +78,5 @@ module Vernissage
 
       vita
     end
-
   end
-
 end

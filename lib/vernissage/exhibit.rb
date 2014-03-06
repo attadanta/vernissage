@@ -1,10 +1,8 @@
 # coding: utf-8
 
 module Vernissage
-
   # An exhibit is a pair of images linking an original with its thumbnail.
   class Exhibit
-
     # The original image.
     #
     # @return [Vernissage::Image] the original image.
@@ -31,7 +29,5 @@ module Vernissage
       @original_image == other.original_image &&
         @thumbnail == other.thumbnail
     end
-
   end
-
 end

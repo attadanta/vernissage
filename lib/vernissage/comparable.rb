@@ -1,11 +1,9 @@
 # coding: utf-8
 
 module Vernissage
-
   # A mixin providing comparison and relatedness methods. Clients must provide
   # a `#path` member.
   module Comparable
-
     # @return [String] the basename of this object's path, without the
     #   extension.
     def basename
@@ -49,7 +47,5 @@ module Vernissage
         false
       end
     end
-
   end
-
 end
